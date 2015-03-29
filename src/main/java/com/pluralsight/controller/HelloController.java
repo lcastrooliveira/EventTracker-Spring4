@@ -13,4 +13,10 @@ public class HelloController {
 		return  "hello";
 	}
 	
+	@RequestMapping(value="/index")
+	public String index(Model model) {
+		System.out.println("inside index method @ Hello Controller");
+		return "forward:index.jsp";
+	}
+	
 }
