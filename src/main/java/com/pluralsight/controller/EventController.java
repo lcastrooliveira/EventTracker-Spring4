@@ -1,29 +1,36 @@
 package com.pluralsight.controller;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.pluralsight.model.Event;
+import com.pluralsight.service.EventService;
 
 @Controller
-@SessionAttributes("event")
 public class EventController {
+	
+	@Autowired
+	private EventService eventService;
 
 	@RequestMapping(value = "/event", method = RequestMethod.GET)
-	public String displayEventpage(Model model) {
-		Event event = new Event();
-		event.setName("Java User Group");
-		model.addAttribute("event",event);		
+	public String displayEventpage(@ModelAttribute("event") Event event) {
 		return "event";
 	}
 	
 	@RequestMapping(value = "/event", method = RequestMethod.POST)
-	public String processEvent(@ModelAttribute("event") Event event) {
+	public String processEvent(@Valid @ModelAttribute("event") Event event, BindingResult result) {
 		System.out.println(event);
+		if(result.hasErrors()) {
+			return "event";
+		} else {
+			eventService.save(event);			
+		}
 		return "redirect:index.html";
 	}
 	

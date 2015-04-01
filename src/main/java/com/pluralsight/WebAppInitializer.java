@@ -25,7 +25,8 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
 	private AnnotationConfigWebApplicationContext getContext() {
 		AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-		context.setConfigLocation("com.pluralsight.WebConfig");
+		//context.setConfigLocation("com.pluralsight.WebConfig");
+		context.setConfigLocations(new String[]{"com.pluralsight.WebConfig","com.pluralsight.JpaConfig"});
 		return context;
 	}
 	
