@@ -16,7 +16,8 @@
 		<c:forEach items="${events}" var="event">
 			<tr>
 				<td>${event.id}</td>
-				<td>${event.name}</td>				
+				<td>${event.name}</td>
+				<td><a href="<c:url value='/removeEvent/${event.id}'/>">Remove</a></td>				
 			</tr>
 		</c:forEach>
 	</table>

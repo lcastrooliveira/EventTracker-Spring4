@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -42,5 +43,11 @@ public class EventController {
 		List<Event> events = eventService.findAllEvents();
 		model.addAttribute("events",events);
 		return "getEvents";		
-	}	
+	}
+	
+	@RequestMapping(value="/removeEvent/{id}", method = RequestMethod.GET)
+	public String removeEvents(@PathVariable("id") long id) {
+		eventService.delete(new Event(id));		
+		return "redirect:/getEvents.html";
+	}
 }

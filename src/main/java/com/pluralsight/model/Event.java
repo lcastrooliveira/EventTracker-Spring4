@@ -16,6 +16,19 @@ public class Event {
 	public static final String FIND_ALL_EVENTS = "findAllEvents";
 	public static final String FIND_EVENT_REPORTS = "findEventReports";
 	
+		
+	
+	public Event() {}
+	
+	public Event(long id) {
+		this.id = id;
+	}
+	
+	public Event(long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+	
 	@Id
 	@GeneratedValue
 	@Column(name="EVENT_ID")
@@ -38,5 +51,10 @@ public class Event {
 	
 	public Long getId() {
 		return id;
+	}
+	
+	@Override
+	public String toString() {		
+		return "Event ID: "+id+" Name: "+name;
 	}
 }
