@@ -1,9 +1,12 @@
 package com.pluralsight.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +34,13 @@ public class EventController {
 		} else {
 			eventService.save(event);			
 		}
-		return "redirect:index.html";
+		return "redirect:getEvents.html";
 	}
 	
-	
+	@RequestMapping(value="/getEvents", method = RequestMethod.GET)
+	public String showEventsPage(Model model) {
+		List<Event> events = eventService.findAllEvents();
+		model.addAttribute("events",events);
+		return "getEvents";		
+	}	
 }
