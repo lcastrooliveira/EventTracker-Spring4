@@ -17,7 +17,7 @@ public class EventServiceImpl implements EventService {
 	
 	@Override
 	@Transactional
-	public Event save(Event event) {
+	public Event save(Event event) {		
 		return eventRepository.save(event);
 	}
 	
@@ -28,6 +28,12 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public void delete(Event event) {		
-		eventRepository.delete(event);
+		eventRepository.delete(event);		
 	}
+
+	@Override
+	public Event findById(Long id) {		
+		return eventRepository.findOne(id);
+	}
+	
 }

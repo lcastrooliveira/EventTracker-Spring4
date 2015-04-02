@@ -17,7 +17,8 @@
 			<tr>
 				<td>${event.id}</td>
 				<td>${event.name}</td>
-				<td><a href="<c:url value='/removeEvent/${event.id}'/>">Remove</a></td>				
+				<td><a href="<c:url value='editEvent?id=${event.id}'/>">Edit</a></td>
+				<td><a href="<c:url value='removeEvent?id=${event.id}'/>">Remove</a></td>				
 			</tr>
 		</c:forEach>
 	</table>

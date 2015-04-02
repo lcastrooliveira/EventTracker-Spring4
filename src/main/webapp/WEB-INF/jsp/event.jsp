@@ -20,6 +20,9 @@
 </head>
 <body>
 	<form:form commandName="event">
+		
+		<form:input path="id" readonly="true" size="8"  disabled="true" />
+        <form:hidden path="id" />
 		<form:errors path="*" cssClass="errorblock" element="div"/>
 		<label for="textinput1">Enter Minutes:</label>
 		<form:input path="name" cssErrorClass="error"/>
